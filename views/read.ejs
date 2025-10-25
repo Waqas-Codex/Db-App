@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profiles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-10">
+
+  <div class="w-full max-w-6xl">
+    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">User Profiles</h1>
+
+    <div class="flex flex-wrap justify-center gap-6">
+      <% if (users && users.length > 0) { %>
+        <% users.forEach(user => { %>
+          <div class="bg-white rounded-2xl shadow-md w-72 p-5 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2">
+            <img src="<%= user.image %>" alt="Profile Picture"
+                 class="w-24 h-24 rounded-full object-cover mb-4 border-4 border-blue-500">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1"><%= user.name %></h3>
+            <p class="text-gray-500 mb-3 text-sm"><%= user.email %></p>
+
+            <div class="flex gap-3">
+                   <a href="/edit/<%= user._id %>"
+   class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">
+  Edit
+</a>
+              <a href="/delete/<%= user._id %>"
+   class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">
+  Delete User
+</a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-gray-600 text-center text-lg w-full">No users found.</p>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
